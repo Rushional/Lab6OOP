@@ -1,17 +1,22 @@
 package Interface;
 
+import GeometricFigures.EquilateralTriangle;
+import GeometricFigures.IsoscelesTriangle;
+import GeometricFigures.Triangle;
+import GeometricFigures.TriangleCoordinates;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class InputPanel extends JPanel {
+class InputPanel extends JPanel {
     private int coordinateX, coordinateY;
     private boolean isSimple = true, isIsosceles = false, isEquilateral = false;
 
-    public InputPanel() {
+    InputPanel(Canvas canvas) {
         super();
-//        setBackground(new Color(116, 255, 207));
+        //        setBackground(new Color(116, 255, 207));
         setBackground(new Color(235, 240, 255));
         setPreferredSize(new Dimension(300, 500));
         setLayout(new GridBagLayout());
@@ -157,6 +162,18 @@ public class InputPanel extends JPanel {
         buttonRootsConstraints.gridwidth = 3;
         add(buttonCalculateRoots, buttonRootsConstraints);
 
+        JButton buttonClear = new JButton("Clear");
+        GridBagConstraints buttonClearConstraints = new GridBagConstraints();
+        buttonClearConstraints.anchor = GridBagConstraints.WEST;
+        buttonClearConstraints.insets.left = 10;
+        buttonClearConstraints.insets.top = 20;
+        buttonClearConstraints.weightx = 0;
+        buttonClearConstraints.weighty = 0;
+        buttonClearConstraints.gridx = 0;
+        buttonClearConstraints.gridy = 7;
+        buttonClearConstraints.gridwidth = 3;
+        add(buttonClear, buttonClearConstraints);
+
         textX.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -196,6 +213,41 @@ public class InputPanel extends JPanel {
         buttonCalculateRoots.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (!textX.getText().equals("") && !textY.getText().equals("")) {
+                    if (isSimple) {
+                        Triangle triangleSimple = new Triangle(
+                                Integer.parseInt(textX.getText()), Integer.parseInt(textY.getText()),
+                                40, 50, 90
+                        );
+                        TriangleCoordinates simpleCoordinates = new TriangleCoordinates(triangleSimple);
+                        canvas.setCoordinatesSimple(simpleCoordinates);
+                    } else if (isIsosceles) {
+                        IsoscelesTriangle isoscelesTriangle = new IsoscelesTriangle(
+                                Integer.parseInt(textX.getText()), Integer.parseInt(textY.getText()),
+                                80, 50
+                        );
+                        TriangleCoordinates isoscelesCoordinates = new TriangleCoordinates(isoscelesTriangle);
+                        canvas.setCoordinatesIsosceles(isoscelesCoordinates);
+                    } else if (isEquilateral) {
+                        EquilateralTriangle equilateralTriangle = new EquilateralTriangle(
+                                Integer.parseInt(textX.getText()), Integer.parseInt(textY.getText()),
+                                55
+                        );
+                        TriangleCoordinates equilateralCoordinates = new TriangleCoordinates(equilateralTriangle);
+                        canvas.setCoordinatesEquilateral(equilateralCoordinates);
+                    } else throw new RuntimeException();
+                }
+                canvas.repaint();
+            }
+        });
+
+        buttonClear.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                canvas.setCoordinatesSimple(null);
+                canvas.setCoordinatesIsosceles(null);
+                canvas.setCoordinatesEquilateral(null);
+                canvas.repaint();
             }
         });
     }

@@ -1,18 +1,18 @@
 package GeometricFigures;
 
-public class Figure {
+class Figure {
     private int x, y;
 
-    public Figure(int x, int y) {
+    Figure(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
-    public int getX() {
+    int getX() {
         return x;
     }
 
-    public int getY() {
+    int getY() {
         return y;
     }
 }

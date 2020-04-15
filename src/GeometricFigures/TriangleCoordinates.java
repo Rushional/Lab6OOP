@@ -1,8 +1,8 @@
 package GeometricFigures;
 
 public class TriangleCoordinates {
-    int[] coordinatesX;
-    int[] coordinatesY;
+    private int[] coordinatesX;
+    private int[] coordinatesY;
 
     public TriangleCoordinates(Triangle triangle) {
         int initiationX = triangle.getX();
