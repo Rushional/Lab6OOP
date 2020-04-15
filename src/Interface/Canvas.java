@@ -1,6 +1,5 @@
 package Interface;
 
-import GeometricFigures.Triangle;
 import GeometricFigures.TriangleCoordinates;
 
 import javax.swing.*;

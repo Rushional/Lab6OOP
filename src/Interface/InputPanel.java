@@ -216,21 +216,21 @@ class InputPanel extends JPanel {
                 if (!textX.getText().equals("") && !textY.getText().equals("")) {
                     if (isSimple) {
                         Triangle triangleSimple = new Triangle(
-                                Integer.parseInt(textX.getText()), Integer.parseInt(textY.getText()),
-                                40, 50, 90
+                                coordinateX, coordinateY,
+                                50, 50, 150
                         );
                         TriangleCoordinates simpleCoordinates = new TriangleCoordinates(triangleSimple);
                         canvas.setCoordinatesSimple(simpleCoordinates);
                     } else if (isIsosceles) {
                         IsoscelesTriangle isoscelesTriangle = new IsoscelesTriangle(
-                                Integer.parseInt(textX.getText()), Integer.parseInt(textY.getText()),
+                                coordinateX, coordinateY,
                                 80, 50
                         );
                         TriangleCoordinates isoscelesCoordinates = new TriangleCoordinates(isoscelesTriangle);
                         canvas.setCoordinatesIsosceles(isoscelesCoordinates);
                     } else if (isEquilateral) {
                         EquilateralTriangle equilateralTriangle = new EquilateralTriangle(
-                                Integer.parseInt(textX.getText()), Integer.parseInt(textY.getText()),
+                                coordinateX, coordinateY,
                                 55
                         );
                         TriangleCoordinates equilateralCoordinates = new TriangleCoordinates(equilateralTriangle);
